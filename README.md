@@ -1,3 +1,6 @@
-# waka.dev
+# notes.fstn.jp
 
-The source of [waka.dev](https://waka.dev).
+The source of [notes.fstn.jp](https://notes.fstn.jp).
+
+# Credits
+Based on [waka/waka.dev](https://github.com/waka/waka.dev).

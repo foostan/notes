@@ -61,9 +61,9 @@ const getIssues = async (github: GitHub): Promise<Issue[]> => {
   const page: PageInfo = { endCursor: null, hasNextPage: true };
 
   let q = `repo:${github.repository} author:${github.author} state:open`;
-  if (github.label) {
-    q += ` label:"${github.label}"`;
-  }
+  github.labels.forEach(function (label){
+    q += ` label:"${label}"`;
+  })
 
   while (page.hasNextPage) {
     const { search: { edges, pageInfo } }: IssuesResponse = await graphql(ISSUES_QUERY, {
@@ -85,9 +85,9 @@ const getIssues = async (github: GitHub): Promise<Issue[]> => {
 
 const getIssue = async (title: string, github: GitHub): Promise<Issue | null> => {
   let q = `repo:${github.repository} author:${github.author} state:open ${title} in:title`;
-  if (github.label) {
-    q += ` label:"${github.label}"`;
-  }
+  github.labels.forEach(function (label){
+    q += ` label:"${label}"`;
+  })
 
   const { search: { edges } }: IssueResponse = await graphql(ISSUE_QUERY, {
     q,

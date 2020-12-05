@@ -12,7 +12,7 @@ export interface GitHub {
   accessToken: string,
   repository: string,
   author: string,
-  label?: string/* if you want filtering by label */
+  labels: string[]
 };
 
 export interface Config {

@@ -1,15 +1,16 @@
-name = "blog"
+name = "notes"
 type = "webpack"
 webpack_config = "webpack.config.js"
+account_id = "e454aa3567bbb2936e865953d09df17e"
 
 [env.dev]
 workers_dev = true
 kv_namespaces = [
-  { binding = "CACHED_RESPONSE", id = "d50e6b7d42cb4529a69795fcdea547e7", preview_id = "6282b0fbc13a4ec796c4b0c82dcb5ecd" }
+  { binding = "CACHED_RESPONSE", id = "08a4c0f630184d66915f0081b64fddf6", preview_id = "fc66373a36544434b19c88c22590ebe7" }
 ]
 
 [env.production]
-route = "*waka.dev/*"
+route = "*notes.fstn.jp/*"
 kv_namespaces = [
-  { binding = "CACHED_RESPONSE", id = "a73df32e3f3f4711b4e8fd7c310764d9" }
+  { binding = "CACHED_RESPONSE", id = "fca8dff41e4f448a9ddbb6320b999b1f" }
 ]

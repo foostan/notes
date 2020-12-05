@@ -1,18 +1,18 @@
 {
   "private": true,
-  "name": "waka.dev",
+  "name": "notes",
   "version": "1.0.0",
-  "description": "My waka.dev on CloudFlare Workers",
-  "homepage": "https://github.com/waka/waka.dev",
+  "description": "My notes on CloudFlare Workers",
+  "homepage": "https://github.com/foostan/notes",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/waka/waka.dev.git"
+    "url": "git+https://github.com/foostan/notes.git"
   },
   "bugs": {
-    "url": "https://github.com/waka/waka.dev/issues"
+    "url": "https://github.com/foostan/notes/issues"
   },
   "license": "MIT",
-  "author": "yo_waka <y.wakahara@gmail.com>",
+  "author": "foostan <ks@fstn.jp>",
   "scripts": {
     "clean": "rimraf dist && rimraf worker"
   },

@@ -11,13 +11,11 @@ const About = ({ iconURL }: Props) => {
         <img src={`${iconURL}`} width="105px" height="105px" alt="icon" />
         <aside>
           <p>
-            @yo_waka<br />
-            甘いものが好きなソフトウェアエンジニア 時々 本部長。<br />
-            RubyとJavaScriptも好き。
+            foostan<br />
           </p>
           <ul>
-            <li><a href="https://twitter.com/yo_waka">Twitter</a></li>
-            <li><a href="https://github.com/waka">GitHub</a></li>
+            <li><a href="https://twitter.com/foostan">Twitter</a></li>
+            <li><a href="https://github.com/foostan">GitHub</a></li>
           </ul>
         </aside>
       </div>

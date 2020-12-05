@@ -13,19 +13,19 @@ const getConfig = (): Config => {
 
   return {
     site: {
-      title: 'waka.dev',
-      description: '日々のこと、技術。',
-      author: '@yo_waka',
+      title: 'notes.fstn',
+      description: 'Notes for developers',
+      author: 'foostan',
       lastBuildDate,
-      siteURL: 'https://waka.dev',
-      faviconURL: 'https://raw.githubusercontent.com/waka/waka.dev/master/assets/favicon.ico',
-      iconURL: 'https://raw.githubusercontent.com/waka/waka.dev/master/assets/waka.png'
+      siteURL: 'https://notes.fstn.jp',
+      faviconURL: 'https://raw.githubusercontent.com/foostan/notes/master/assets/favicon.ico',
+      iconURL: 'https://raw.githubusercontent.com/foostan/notes/master/assets/foostan.png'
     },
     github: {
       accessToken,
-      repository: 'waka/waka.dev',
-      author: 'waka',
-      label: 'public'
+      repository: 'foostan/notes',
+      author: 'foostan',
+      labels: ['public']
     }
   };
 };
