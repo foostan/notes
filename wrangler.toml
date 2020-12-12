@@ -3,14 +3,8 @@ type = "webpack"
 webpack_config = "webpack.config.js"
 account_id = "e454aa3567bbb2936e865953d09df17e"
 
-[env.dev]
-workers_dev = true
-kv_namespaces = [
-  { binding = "CACHED_RESPONSE", id = "08a4c0f630184d66915f0081b64fddf6", preview_id = "fc66373a36544434b19c88c22590ebe7" }
-]
-
 [env.production]
-route = "*notes.fstn.jp/*"
+route = "*fstn.dev/*"
 kv_namespaces = [
-  { binding = "CACHED_RESPONSE", id = "fca8dff41e4f448a9ddbb6320b999b1f" }
+  { binding = "CACHED_RESPONSE", id = "fca8dff41e4f448a9ddbb6320b999b1f", preview_id = "fc66373a36544434b19c88c22590ebe7" }
 ]

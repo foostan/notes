@@ -13,11 +13,11 @@ const getConfig = (): Config => {
 
   return {
     site: {
-      title: 'notes.fstn',
+      title: 'Notes',
       description: 'Notes for developers',
       author: 'foostan',
       lastBuildDate,
-      siteURL: 'https://notes.fstn.jp',
+      siteURL: 'https://fstn.dev',
       faviconURL: 'https://raw.githubusercontent.com/foostan/notes/master/assets/favicon.ico',
       iconURL: 'https://raw.githubusercontent.com/foostan/notes/master/assets/foostan.png'
     },
