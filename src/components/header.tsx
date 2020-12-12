@@ -9,7 +9,7 @@ const Header = ({ title }: Props) => {
     <div className="header">
       <nav className="navbar" role="navigation">
         <div className="navbar-menu">
-          <a href="https://www.google.com/search?q=site:notes">Search</a>
+          <a href="https://www.google.com/search?q=site:fstn.dev">Search</a>
           <a href="/archive">Archive</a>
           <a href="/feed.xml">Feed</a>
         </div>
