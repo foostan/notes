@@ -4,6 +4,7 @@ webpack_config = "webpack.config.js"
 account_id = "e454aa3567bbb2936e865953d09df17e"
 
 [env.production]
+zone_id = "c037b7b2561044628ec648cfa8b309bd"
 route = "*fstn.dev/*"
 kv_namespaces = [
   { binding = "CACHED_RESPONSE", id = "fca8dff41e4f448a9ddbb6320b999b1f", preview_id = "fc66373a36544434b19c88c22590ebe7" }
