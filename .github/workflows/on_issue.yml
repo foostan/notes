@@ -4,6 +4,8 @@ on:
     types:
       - labeled
       - unlabeled
+      - edited
+      - deleted
 jobs:
   deploy:
     name: Checkout and Deploy
