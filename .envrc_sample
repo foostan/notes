@@ -1,0 +1,5 @@
+export CF_EMAIL=
+export CF_API_KEY=
+export CF_ACCOUNT_ID=
+export CF_ZONE_ID=
+export GH_ACCESS_TOKEN=

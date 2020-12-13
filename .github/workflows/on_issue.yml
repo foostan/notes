@@ -21,7 +21,8 @@ jobs:
         if: github.event.label.name == 'public'
         uses: cloudflare/wrangler-action@1.3.0
         with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
+          email: ${{ secrets.CF_EMAIL }}
+          apiKey: ${{ secrets.CF_API_KEY }}
           environment: 'production'
           publish: false
           preCommands: |
