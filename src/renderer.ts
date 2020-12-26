@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { getIssues, findIssue } from './api_client';
+import {getIssues, findIssue, getIssue} from './api_client';
 import { getFeed } from './feed';
 import { getStyles } from './styles';
 import Index from './components/index';
 import Archive from './components/archive';
 import Show from './components/show';
 import { NotFoundError } from './errors';
-import { Config, Site } from './types';
+import {Config, Issue, Site} from './types';
 
 const renderIndex = async (uri: string, config: Config): Promise<string> => {
   const issues = await getIssues(config.github);
@@ -26,7 +26,13 @@ const renderArchive = async (uri: string, config: Config): Promise<string> => {
 };
 
 const renderShow = async (uri: string, title: string, config: Config): Promise<string> => {
-  const issue = await findIssue(title, config.github);
+  const issue = await ((): Promise<Issue | null> => {
+    if (title.match(/^\d+$/)) {
+      return getIssue(Number(title), config.github);
+    } else {
+      return findIssue(title, config.github);
+    }
+  })()
   if (issue === null) {
     throw new NotFoundError();
   }

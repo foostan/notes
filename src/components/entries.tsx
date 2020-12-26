@@ -14,7 +14,7 @@ const Entries = ({ issues }: Props) => {
           issue.bodyText;
         return (
           <div key={idx} className="entries-item">
-            <h3><span className="entry-pub-date">{issue.pubDate}</span><a href={`/entry/${issue.title}`}>{issue.title}</a></h3>
+            <h3><span className="entry-pub-date">{issue.pubDate}</span><a href={`/entry/${issue.id}`}>{issue.title}</a></h3>
             <p>{body}</p>
           </div>
         );

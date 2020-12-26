@@ -20,7 +20,7 @@ const ISSUES_QUERY = `
       edges {
         node {
           ... on Issue {
-            number
+            number,
             title,
             bodyHTML,
             bodyText,
@@ -141,7 +141,7 @@ const nodeToIssue = (node: IssueNode): Issue => {
   const pubDate = (new Date(node.createdAt)).toDateString();
   const editDate = (new Date(node.lastEditedAt)).toDateString();
   return {
-    id: node.id,
+    id: node.number,
     title: node.title,
     bodyHTML: node.bodyHTML,
     bodyText: node.bodyText,

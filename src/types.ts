@@ -36,7 +36,7 @@ interface LabelNode {
 };
 
 export interface IssueNode {
-  id: number,
+  number: number,
   title: string,
   bodyHTML: string,
   bodyText: string,

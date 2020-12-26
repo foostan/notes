@@ -5,7 +5,7 @@ const getFeed = (issues: Issue[], site: Site): string => {
     return `<item>
       <title><![CDATA[${issue.title}]]></title>
       <description><![CDATA[${issue.bodyHTML}]]></description>
-      <link>${site.siteURL}/entry/${issue.title}</link>
+      <link>${site.siteURL}/entry/${issue.id}</link>
       <pubDate>${issue.pubDate}</pubDate>
     </item>`;
   }).join('');
