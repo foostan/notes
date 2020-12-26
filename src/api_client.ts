@@ -1,5 +1,13 @@
 import { graphql } from '@octokit/graphql';
-import { GitHub, Issue, IssueNode, IssuesResponse, IssueResponse, PageInfo } from './types';
+import {
+  GitHub,
+  Issue,
+  IssueNode,
+  IssuesResponse,
+  IssueGetResponse,
+  IssueFindResponse,
+  PageInfo,
+} from './types';
 
 const ISSUES_QUERY = `
   query issues($q: String!, $cursor: String) { 
@@ -12,6 +20,7 @@ const ISSUES_QUERY = `
       edges {
         node {
           ... on Issue {
+            number
             title,
             bodyHTML,
             bodyText,
@@ -31,7 +40,7 @@ const ISSUES_QUERY = `
   }
 `;
 
-const ISSUE_QUERY = `
+const ISSUE_FIND_QUERY = `
   query issue($q: String!) { 
     search(
       type: ISSUE,
@@ -41,6 +50,7 @@ const ISSUE_QUERY = `
       edges {
         node {
           ... on Issue {
+            number,
             title,
             bodyHTML,
             bodyText,
@@ -54,6 +64,24 @@ const ISSUE_QUERY = `
       }
     }
   }
+`;
+
+const ISSUE_GET_QUERY = `
+query issue($owner: String!, $repo: String!, $id: Int!) {
+  repository(owner: $owner, name: $repo) {
+    issue(number: $id) {
+      number,
+      title,
+      bodyHTML,
+      bodyText,
+      labels(first: 5) {
+        nodes { name }
+      },
+      url,
+      createdAt
+    }
+  }
+}
 `;
 
 const getIssues = async (github: GitHub): Promise<Issue[]> => {
@@ -83,13 +111,24 @@ const getIssues = async (github: GitHub): Promise<Issue[]> => {
   return issues.sort((a, b) => a.title > b.title ? -1 : 1);
 };
 
-const getIssue = async (title: string, github: GitHub): Promise<Issue | null> => {
+const getIssue = async (issueId: number, github: GitHub): Promise<Issue | null> => {
+  const [owner, repo] = github.repository.split("/");
+  const issue: IssueGetResponse = await graphql(ISSUE_GET_QUERY, {
+    owner: owner,
+    repo: repo,
+    id: issueId,
+    headers: { authorization: `token ${github.accessToken}` }
+  });
+  return issue.repository.issue ? nodeToIssue(issue.repository.issue) : null;
+};
+
+const findIssue = async (title: string, github: GitHub): Promise<Issue | null> => {
   let q = `repo:${github.repository} author:${github.author} state:open ${title} in:title`;
   github.labels.forEach(function (label){
     q += ` label:"${label}"`;
   })
 
-  const { search: { edges } }: IssueResponse = await graphql(ISSUE_QUERY, {
+  const { search: { edges } }: IssueFindResponse = await graphql(ISSUE_FIND_QUERY, {
     q,
     headers: { authorization: `token ${github.accessToken}` }
   });
@@ -99,6 +138,7 @@ const getIssue = async (title: string, github: GitHub): Promise<Issue | null> =>
 const nodeToIssue = (node: IssueNode): Issue => {
   const pubDate = (new Date(node.createdAt)).toUTCString();
   return {
+    id: node.id,
     title: node.title,
     bodyHTML: node.bodyHTML,
     bodyText: node.bodyText,
@@ -108,4 +148,4 @@ const nodeToIssue = (node: IssueNode): Issue => {
   };
 };
 
-export { getIssues, getIssue };
+export { getIssues, getIssue, findIssue };

@@ -21,6 +21,7 @@ export interface Config {
 };
 
 export interface Issue {
+  id: number,
   title: string,
   bodyHTML: string,
   bodyText: string,
@@ -34,6 +35,7 @@ interface LabelNode {
 };
 
 export interface IssueNode {
+  id: number,
   title: string,
   bodyHTML: string,
   bodyText: string,
@@ -58,10 +60,16 @@ export interface IssuesResponse {
   }
 };
 
-export interface IssueResponse {
+export interface IssueFindResponse {
   search: {
     edges: Edge[]
   }
+};
+
+export interface IssueGetResponse {
+  repository: {
+    issue: IssueNode;
+  };
 };
 
 export type Response = { contentType: string, response: string, status: number };

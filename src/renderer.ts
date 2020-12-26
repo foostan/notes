@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { getIssues, getIssue } from './api_client';
+import { getIssues, findIssue } from './api_client';
 import { getFeed } from './feed';
 import { getStyles } from './styles';
 import Index from './components/index';
@@ -26,7 +26,7 @@ const renderArchive = async (uri: string, config: Config): Promise<string> => {
 };
 
 const renderShow = async (uri: string, title: string, config: Config): Promise<string> => {
-  const issue = await getIssue(title, config.github);
+  const issue = await findIssue(title, config.github);
   if (issue === null) {
     throw new NotFoundError();
   }
