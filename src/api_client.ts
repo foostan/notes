@@ -28,7 +28,8 @@ const ISSUES_QUERY = `
               nodes { name }
             },
             url,
-            createdAt
+            createdAt,
+            lastEditedAt
           }
         }
       },
@@ -58,7 +59,8 @@ const ISSUE_FIND_QUERY = `
               nodes { name }
             },
             url,
-            createdAt
+            createdAt,
+            lastEditedAt
           }
         }
       }
@@ -107,8 +109,8 @@ const getIssues = async (github: GitHub): Promise<Issue[]> => {
     page.hasNextPage = pageInfo.hasNextPage;
   }
 
-  // sort title desc
-  return issues.sort((a, b) => a.title > b.title ? -1 : 1);
+  // sort id desc
+  return issues.sort((a, b) => (a.id > b.id ? -1 : 1));
 };
 
 const getIssue = async (issueId: number, github: GitHub): Promise<Issue | null> => {
@@ -136,7 +138,8 @@ const findIssue = async (title: string, github: GitHub): Promise<Issue | null> =
 };
 
 const nodeToIssue = (node: IssueNode): Issue => {
-  const pubDate = (new Date(node.createdAt)).toUTCString();
+  const pubDate = (new Date(node.createdAt)).toDateString();
+  const editDate = (new Date(node.lastEditedAt)).toDateString();
   return {
     id: node.id,
     title: node.title,
@@ -144,7 +147,8 @@ const nodeToIssue = (node: IssueNode): Issue => {
     bodyText: node.bodyText,
     labels: node.labels.nodes.map(n => n.name),
     url: node.url,
-    pubDate
+    pubDate,
+    editDate
   };
 };
 

@@ -27,7 +27,8 @@ export interface Issue {
   bodyText: string,
   labels: string[],
   url: string,
-  pubDate: string
+  pubDate: string,
+  editDate: string,
 };
 
 interface LabelNode {
@@ -41,7 +42,8 @@ export interface IssueNode {
   bodyText: string,
   labels: { nodes: LabelNode[] }
   url: string,
-  createdAt: string
+  createdAt: string,
+  lastEditedAt: string
 };
 
 interface Edge {

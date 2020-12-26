@@ -216,6 +216,11 @@ const styles = `
   .entry-content ul li {
     margin-bottom: .1em;
   }
+  .entry-pub-date {
+    margin-right: 1em;
+    font-size: .5em;
+    color: #555;
+  }
 `;
 
 const getStyles = (): string => styles;
